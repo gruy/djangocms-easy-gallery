@@ -1,0 +1,10 @@
+.easy-gallery-albums {
+    margin: 0;
+    padding: 0;
+}
+
+.easy-gallery-albums li {
+    display: inline-block;
+    margin: 0 1em 1em 0;
+    /*width: 150px;*/
+}

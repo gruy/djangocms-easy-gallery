@@ -1,0 +1,31 @@
+{% extends change_form_template|default:"admin/cms/page/plugin/change_form.html" %}
+{% load admin_static %}
+{% load admin_urls %}
+{% load i18n %}
+{% load thumbnail %}
+
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "djangocms_easy_gallery/styles.css" %}" />
+{% endblock %}
+
+
+{% block content %}
+    <h3>{% trans "Selected album" %}</h3>
+    {{ block.super }}
+    <h3>{% trans "All albums" %}</h3>
+    <ul class="eg-albums">
+        {% for album in albums %}
+            <li>
+                <h4><a href="{% url album.get_meta|admin_urlname:'change' album.pk %}" onclick="return showAddAnotherPopup(this);">{{ album }}</a></h4>
+                <a href="{% url album.get_meta|admin_urlname:'change' album.pk %}" onclick="return showAddAnotherPopup(this);">
+                {% for image in album.images_admin_preview %}
+                    {% thumbnail image 50x50 crop="center" as thumb %}
+                    <img src="{{ thumb.url }}" />
+                {% endfor %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

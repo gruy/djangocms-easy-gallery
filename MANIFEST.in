@@ -1,0 +1,5 @@
+include LICENSE
+include README
+recursive-include djangocms_easy_gallery/static *
+recursive-include djangocms_easy_gallery/templates *
+recursive-exclude * *.py[co]

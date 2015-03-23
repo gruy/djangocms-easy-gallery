@@ -1,0 +1,23 @@
+{% load i18n sekizai_tags %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% addtoblock "css" %}
+    <link rel="stylesheet" type="text/css" href="{% static "djangocms_easy_gallery/default.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "djangocms_easy_gallery/lightbox/css/lightbox.css" %}" />
+{% endaddtoblock %}
+
+{% addtoblock "js" %}
+    <script src="{% static "djangocms_easy_gallery/lightbox/js/lightbox.min.js" %}"></script>
+{% endaddtoblock %}
+
+<h4>{{ object.album.title }}</h4>
+<ul class="easy-gallery-albums">
+    {% for image in images %}
+        {% thumbnail image 150x150 crop="center" as thumb %}
+        <li>
+            <a href="{{ image.url }}" data-lightbox="image-1"><img src="{{ thumb.url }}" /></a>
+        </li>
+    {% endfor %}
+</ul>

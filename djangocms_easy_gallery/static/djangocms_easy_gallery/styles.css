@@ -1,0 +1,88 @@
+.eg-albums {
+    margin: 0;
+    padding: 0;
+}
+
+.eg-albums li {
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin: 0 1em 1em 0;
+    padding: 5px;
+    vertical-align: top;
+    width: 105px;
+}
+
+.eg-albums h4 {
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100px;
+    white-space: nowrap;
+}
+
+
+#eg-sortable {
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+}
+
+#eg-sortable .inline-related,
+#eg-sortable .add-row,
+#eg-sortable .field-image,
+#eg-sortable img[id*=thumbnail],
+#eg-sortable p,
+.sortable-placeholder {
+    width: 64px;
+}
+
+#eg-sortable .inline-related,
+#eg-sortable .add-row,
+.sortable-placeholder {
+    border: 1px solid #ccc;
+    float: left;
+    height: 125px;
+    list-style-type: none;
+    margin: 0 1em 1em 0;
+    padding: 5px;
+    vertical-align: top;
+}
+
+#eg-sortable h3 {
+    cursor: move;
+}
+
+#eg-sortable p {
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    white-space: nowrap;
+}
+
+#eg-sortable .field-image {
+    margin-bottom: 5px;
+}
+
+#eg-sortable span[id*=image_description] {
+    float: right;
+    width: 43px;
+}
+
+#eg-sortable img[id*=thumbnail] {
+    display: block;
+    height: 64px;
+    margin-bottom: 3px;
+}
+
+#eg-sortable .related-lookup {
+    float: left;
+}
+
+#eg-sortable .filerClearer,
+#eg-sortable label {
+    display: none;
+}
+
+#eg-sortable .field-order {
+    display: none;
+}
