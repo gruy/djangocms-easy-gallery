@@ -2,8 +2,9 @@
 import glob
 import os
 
-from django.db import models
 from django.conf import settings
+from django.db import models
+from django.template.loaders.app_directories import get_app_template_dirs
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from cms.models import CMSPlugin
@@ -16,19 +17,16 @@ def get_templates():
     templates = []
     dirs_to_scan = []
 
-    if 'django.template.loaders.app_directories.Loader' in settings.TEMPLATE_LOADERS:
-        try:
-            mod = __import__('djangocms_easy_gallery')
-        except ImportError as e:
-            raise ImproperlyConfigured('ImportError %s: %s' % ('djangocms_easy_gallery', e.args[0]))
-        template_dir = os.path.join(os.path.dirname(mod.__file__), 'templates', 'djangocms_easy_gallery')
-        dirs_to_scan.append(template_dir)
-
-    if 'django.template.loaders.filesystem.Loader' in settings.TEMPLATE_LOADERS:
-        for dir in settings.TEMPLATE_DIRS:
-            dirs = [os.path.join(dir, name) for name in os.listdir(dir) if os.path.isdir(os.path.join(dir, name)) and name == 'djangocms_easy_gallery']
+    for dir in get_app_template_dirs('templates'):
+        dirs = [os.path.join(dir, name) for name in os.listdir(dir) if os.path.isdir(os.path.join(dir, name)) and name == 'djangocms_easy_gallery']
+        if dirs:
             dirs_to_scan.extend(dirs)
 
+    for dir in settings.TEMPLATES[0]['DIRS']:
+        dirs = [os.path.join(dir, name) for name in os.listdir(dir) if os.path.isdir(os.path.join(dir, name)) and name == 'djangocms_easy_gallery']
+        if dirs:
+            dirs_to_scan.extend(dirs)
+                
     for dir in dirs_to_scan:
         files = glob.glob(os.path.join(dir, '*.html'))
         for file in files:
